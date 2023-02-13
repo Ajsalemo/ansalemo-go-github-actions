@@ -43,14 +43,10 @@ jobs:
         with:
           name: go-app
           path: .
-      # To set up credentials for this, see here: https://github.com/marketplace/actions/azure-app-service-settings
+          
       - uses: azure/login@v1
         with:
           creds: '${{ secrets.AZURE_CREDENTIALS }}'
-      # - uses: azure/appservice-settings@v1
-      #   with:
-      #     app-name: 'ansalemo-go-githubactions'
-      #     app-settings-json: '[{ "GIN_MODE": "release" }]'
 
       - name: Deploy to Web App with Azure CLI
         uses: azure/CLI@v1
