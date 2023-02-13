@@ -43,17 +43,6 @@ jobs:
         with:
           name: go-app
           path: .
-          
-      - uses: azure/login@v1
-        with:
-          creds: '${{ secrets.AZURE_CREDENTIALS }}'
-
-      - name: Deploy to Web App with Azure CLI
-        uses: azure/CLI@v1
-        with:
-          azcliversion: 2.43.0
-          inlineScript: |
-            az webapp config appsettings set -g ansalemo-rg -n ansalemo-go-githubactions --settings GIN_MODE=release
 
       - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v2
