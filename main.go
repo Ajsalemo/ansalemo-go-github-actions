@@ -1,21 +1,29 @@
 package main
 
 import (
-	"encoding/json"
-	"log"
 	"net/http"
+
+	"github.com/gin-gonic/gin"
 )
 
-func main() {
-	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		m := map[string]string{"msg": "Hello from Go with GitHub Actions!"}
-		e := json.NewEncoder(w)
-		e.Encode(m)
-	})
-	log.Println("Server listening on port 8080.")
-	err := http.ListenAndServe(":8080", nil)
 
-	if err != nil {
-		log.Fatal(err)
-	}
+func setupRouter() *gin.Engine {
+	r := gin.Default()
+
+	// Ping test
+	r.GET("/", func(c *gin.Context) {
+		m := "go-github-actions-examples-gin"
+		c.JSON(http.StatusOK, gin.H{"message": m})
+	})
+
+	return r
+}
+
+func main() {
+	r := setupRouter()
+	// In production set GIN_MODE to release
+	// or add this line:
+	// gin.SetMode(gin.ReleaseMode)
+	print("Server listening on 0.0.0.0:8080")
+	r.Run(":8080")
 }
