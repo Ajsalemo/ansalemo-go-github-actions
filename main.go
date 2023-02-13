@@ -12,7 +12,7 @@ func setupRouter() *gin.Engine {
 
 	// Ping test
 	r.GET("/", func(c *gin.Context) {
-		m := "go-github-actions-examples-gin"
+		m := "go-github-actions-examples-gin!"
 		c.JSON(http.StatusOK, gin.H{"message": m})
 	})
 
